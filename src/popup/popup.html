@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>YT Dual Sub</title>
+    <link rel="stylesheet" href="./popup.css" />
+  </head>
+  <body>
+    <div class="app">
+      <h1>YT Dual Sub</h1>
+
+      <label class="row">
+        <span>Enable extension</span>
+        <input id="enabled" type="checkbox" />
+      </label>
+
+      <label class="field">
+        <span>Second subtitle language</span>
+        <select id="targetLanguage"></select>
+      </label>
+
+      <label class="row">
+        <span>Show original subtitle</span>
+        <input id="showOriginal" type="checkbox" />
+      </label>
+
+      <label class="row">
+        <span>Show translated subtitle</span>
+        <input id="showTranslated" type="checkbox" />
+      </label>
+
+      <label class="row">
+        <span>Hide native YouTube subtitles</span>
+        <input id="hideNativeSubtitles" type="checkbox" />
+      </label>
+
+      <label class="field">
+        <span>Font family</span>
+        <input id="fontFamily" type="text" />
+      </label>
+
+      <label class="field">
+        <span>Original font size</span>
+        <input id="originalFontSizePx" type="range" min="14" max="42" step="1" />
+        <strong id="originalFontSizePxValue"></strong>
+      </label>
+
+      <label class="field">
+        <span>Translated font size</span>
+        <input id="translatedFontSizePx" type="range" min="14" max="48" step="1" />
+        <strong id="translatedFontSizePxValue"></strong>
+      </label>
+
+      <label class="field">
+        <span>Vertical gap</span>
+        <input id="gapPx" type="range" min="0" max="24" step="1" />
+        <strong id="gapPxValue"></strong>
+      </label>
+
+      <label class="field">
+        <span>Bottom offset</span>
+        <input id="bottomOffsetPx" type="range" min="20" max="180" step="1" />
+        <strong id="bottomOffsetPxValue"></strong>
+      </label>
+
+      <label class="field">
+        <span>Original color</span>
+        <input id="originalColor" type="color" />
+      </label>
+
+      <label class="field">
+        <span>Translated color</span>
+        <input id="translatedColor" type="color" />
+      </label>
+
+      <label class="field">
+        <span>Text align</span>
+        <select id="textAlign">
+          <option value="center">center</option>
+          <option value="left">left</option>
+          <option value="right">right</option>
+        </select>
+      </label>
+
+      <label class="field">
+        <span>Layout</span>
+        <select id="layout">
+          <option value="column">column</option>
+          <option value="row">row</option>
+        </select>
+      </label>
+
+      <p id="status"></p>
+    </div>
+
+    <script type="module" src="./popup.ts"></script>
+  </body>
+</html>
