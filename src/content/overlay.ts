@@ -7,6 +7,7 @@ export class SubtitleOverlay {
   private container: HTMLDivElement;
   private originalLine: HTMLDivElement;
   private translatedLine: HTMLDivElement;
+  private placeholderLine: HTMLDivElement;
   private lastRenderedKey = '';
 
   constructor() {
@@ -22,15 +23,20 @@ export class SubtitleOverlay {
     this.translatedLine = document.createElement('div');
     this.translatedLine.className = 'yt-dual-sub-line yt-dual-sub-translated';
 
+    this.placeholderLine = document.createElement('div');
+    this.placeholderLine.className = 'yt-dual-sub-line yt-dual-sub-placeholder';
+    this.placeholderLine.style.display = 'none';
+
     this.container.appendChild(this.originalLine);
     this.container.appendChild(this.translatedLine);
+    this.container.appendChild(this.placeholderLine);
     this.root.appendChild(this.container);
 
     console.log(`${LOG_PREFIX} constructed`);
   }
 
   mount(target: HTMLElement): void {
-    if (!this.root.isConnected) {
+    if (this.root.parentElement !== target) {
       target.appendChild(this.root);
       console.log(`${LOG_PREFIX} mounted`, {
         target: target.id || target.className || target.tagName,
@@ -46,11 +52,15 @@ export class SubtitleOverlay {
   setText(original: string, translated: string, settings: UserSettings): void {
     this.originalLine.textContent = original;
     this.translatedLine.textContent = translated;
+    this.placeholderLine.textContent = '';
 
-    this.originalLine.style.display =
-      settings.showOriginal && original ? 'block' : 'none';
-    this.translatedLine.style.display =
-      settings.showTranslated && translated ? 'block' : 'none';
+    const showOriginalLine = settings.showOriginal && Boolean(original);
+    const showTranslatedLine = settings.showTranslated && Boolean(translated);
+
+    this.originalLine.style.display = showOriginalLine ? 'block' : 'none';
+    this.translatedLine.style.display = showTranslatedLine ? 'block' : 'none';
+    this.placeholderLine.style.display = 'none';
+    this.container.style.display = showOriginalLine || showTranslatedLine ? 'flex' : 'none';
 
     const key = [
       original,
@@ -70,9 +80,37 @@ export class SubtitleOverlay {
     }
   }
 
+  setPlaceholder(message: string, settings: UserSettings): void {
+    this.originalLine.textContent = '';
+    this.translatedLine.textContent = '';
+    this.placeholderLine.textContent = message;
+
+    this.originalLine.style.display = 'none';
+    this.translatedLine.style.display = 'none';
+    this.placeholderLine.style.display = settings.showTranslated || settings.showOriginal ? 'block' : 'none';
+    this.container.style.display = this.placeholderLine.style.display === 'block' ? 'flex' : 'none';
+
+    const key = [
+      'placeholder',
+      message,
+      String(settings.showOriginal),
+      String(settings.showTranslated),
+    ].join('|');
+
+    if (key !== this.lastRenderedKey) {
+      this.lastRenderedKey = key;
+      console.log(`${LOG_PREFIX} setPlaceholder`, { message });
+    }
+  }
+
   clear(): void {
     this.originalLine.textContent = '';
     this.translatedLine.textContent = '';
+    this.placeholderLine.textContent = '';
+    this.originalLine.style.display = 'none';
+    this.translatedLine.style.display = 'none';
+    this.placeholderLine.style.display = 'none';
+    this.container.style.display = 'none';
     this.lastRenderedKey = '';
     console.log(`${LOG_PREFIX} clear`);
   }
@@ -87,6 +125,9 @@ export class SubtitleOverlay {
     this.container.style.fontFamily = settings.fontFamily;
     this.container.dataset.layout = settings.layout;
     this.container.style.textAlign = settings.textAlign;
+    if (!this.container.style.display) {
+      this.container.style.display = 'none';
+    }
 
     this.originalLine.style.fontSize = `${settings.originalFontSizePx}px`;
     this.originalLine.style.color = settings.originalColor;
@@ -94,6 +135,10 @@ export class SubtitleOverlay {
     this.translatedLine.style.fontSize = `${settings.translatedFontSizePx}px`;
     this.translatedLine.style.color = settings.translatedColor;
     this.translatedLine.dir = 'auto';
+
+    this.placeholderLine.style.fontSize = `${Math.max(16, Math.round((settings.originalFontSizePx + settings.translatedFontSizePx) / 2))}px`;
+    this.placeholderLine.style.color = '#e0e0e0';
+    this.placeholderLine.dir = 'auto';
 
     console.log(`${LOG_PREFIX} applySettings`, {
       bottomOffsetPx: settings.bottomOffsetPx,

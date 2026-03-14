@@ -35,6 +35,13 @@
   direction: rtl;
 }
 
+.yt-dual-sub-placeholder {
+  direction: rtl;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-align: center;
+}
+
 .yt-dual-sub-hide-native .ytp-caption-window-container,
 .yt-dual-sub-hide-native .caption-window,
 .yt-dual-sub-hide-native .ytp-caption-segment,
