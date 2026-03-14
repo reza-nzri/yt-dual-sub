@@ -133,10 +133,8 @@ Done 🎉
 
 </details>
 
-# 🎮 Usage
-
 <details>
-<summary>▶ How to use the extension</summary>
+<summary><h2>🎮 Usage</h2> : How to use the extension</summary>
 
 1️⃣ Open a YouTube video
 
@@ -162,10 +160,8 @@ CC button
 
 </details>
 
-# 🧠 How It Works
-
 <details>
-<summary>⚙ Internal Workflow</summary>
+<summary><h2>🧠 How It Works</h2> : Internal Workflow</summary>
 
 The extension works using **four main components**.
 
@@ -236,10 +232,8 @@ row
 
 </details>
 
-# 🏗 Architecture
-
 <details>
-<summary>🧱 Architecture Overview</summary>
+<summary><h2>🏗 Architecture</h2></summary>
 
 ```
 YouTube Page
@@ -272,10 +266,8 @@ Key modules:
 
 </details>
 
-# 🧑‍💻 Development
-
 <details>
-<summary>🛠 Development Setup</summary>
+<summary><h2>🛠 Development Setup</h2></summary>
 
 ### Install dependencies
 
@@ -316,7 +308,7 @@ refreshTracksIfNeeded
 
 </details>
 
-# ⚠ Known YouTube Behavior
+## ⚠ Known YouTube Behavior
 
 <details>
 <summary>📡 YouTube caption API limitations</summary>
@@ -357,27 +349,8 @@ The extension includes:
 
 </details>
 
-# 🔧 Configuration
-
 <details>
-<summary>⚙ User Settings</summary>
-
-Available options:
-
-* target language
-* show original subtitle
-* show translated subtitle
-* layout mode
-* font size
-* subtitle colors
-* background opacity
-
-</details>
-
-# 🤝 Contributing
-
-<details>
-<summary>💡 How to contribute</summary>
+<summary><h2>🤝 Contributing</h2> : How to contribute</summary>
 
 ### 1️⃣ Fork repository
 
@@ -399,10 +372,8 @@ git commit -m "Add subtitle alignment improvement"
 
 </details>
 
-# 🗺 Roadmap
-
 <details>
-<summary>🚀 Planned Features</summary>
+<summary><h2>🚀 Planned Features</h2></summary>
 
 * subtitle delay adjustment
 * AI translation fallback
@@ -411,11 +382,10 @@ git commit -m "Add subtitle alignment improvement"
 * Firefox support
 * subtitle highlighting
 * mobile support
-
 </details>
 
 <details>
-<summary><h2>🔍 SEO Keywords</h2></summary>
+<summary><h3>🔍 SEO Keywords</h3></summary>
 
 ```
 youtube dual subtitles
@@ -438,7 +408,7 @@ youtube json3 subtitles parser
 ```
 </details>
 
-# ⭐ Support
+## ⭐ Support
 
 If you like this project:
 
@@ -446,11 +416,11 @@ If you like this project:
 🐛 Report issues
 🔧 Submit pull requests
 
-# 👨‍💻 Author
+## 👨‍💻 Author
 
 Created by **Reza Nazari**
 
-# 🚀 Final Note
+## 🚀 Final Note
 
 YouTube subtitle behavior changes frequently.
 This project focuses on building the **most robust dual subtitle extension possible** while staying compatible with YouTube.
